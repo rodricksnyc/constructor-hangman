@@ -37,6 +37,7 @@ startGame()
 
 function newGame() {
     if (guessesRemaining === 10) {
+
         let randNum = Math.floor(Math.random() * wordBank.length)
         currentWord = new Word(wordBank[randNum])
         currentWord.getLetters();
@@ -44,6 +45,7 @@ function newGame() {
         promptUser();
     } else {
         resetGuessesRemaining();
+
         newGame();
     }
 }
@@ -70,11 +72,19 @@ function promptUser() {
 
         let letterReturned = (ltr.chosenLetter).toUpperCase()
         let guessedAlready = false
-        for (let i = 0; i < guessedLetters.length; i++) {
-            if(letterReturned === guessedLetters[i]) {
+        console.log(letterReturned)
+        //   console.log(guessedLetters)
+        // for (let i = 0; i < guessedLetters.length; i++) {
+            // if(ltr.chosenLetter.toUpperCase() === guessedLetters[i]) {
+            //     guessedAlready = true
+            // }
+            if (guessedLetters.indexOf(letterReturned) > -1) {
                 guessedAlready = true
+
             }
-        }
+
+
+        // }
 
         if (guessedAlready === false) {
 
@@ -89,6 +99,7 @@ function promptUser() {
                 console.log('You have ' + guessesRemaining + ' guesses remaining.')
                 console.log(currentWord.animalWord())
                 console.log('Letters guessed: ' + guessedLetters)
+
             } else {
                 console.log('You"re correct')
 
@@ -100,9 +111,8 @@ function promptUser() {
                     console.log('Guesses remaining: ' + guessesRemaining)
                     console.log(currentWord.animalWord())
                     console.log('Letters guessed: ' + guessedLetters)
-                    newGame();
+                    promptUser();
                 }
-
             }
 
             if (guessesRemaining > 0 && currentWord.wordFound === false) {
@@ -114,6 +124,7 @@ function promptUser() {
             }
         } else {
             console.log('You have already guessed that letter')
+            guessedAlready = false;
             promptUser();
         }
     })

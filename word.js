@@ -21,11 +21,14 @@ function Word(realWord) {
     this.checkIfLetterFound = function (guessedLetter) {
         let whatToReturn = 0
         this.letters.forEach(function (realLetter) {
-            if (realLetter.letter === guessedLetter) {
+
+            if (realLetter.letter.toUpperCase() === guessedLetter) {
                 realLetter.appear = true
                 whatToReturn++
             }
+
         })
+      
         return whatToReturn
     }
 
